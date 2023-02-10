@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0cf745a8-bae1-4a13-aa42-d40463f128e2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spaders.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/InvadersApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Sprite2D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/ct255-images/alien_ship_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/ct255-images/alien_ship_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/ct255-images/badguy.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/ct255-images/badguy.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/ct255-images/bullet.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/ct255-images/bullet.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/ct255-images/player.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/ct255-images/player.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/InvadersApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InvadersApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/alien_ship_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/ct255-images/alien_ship_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/player_ship.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/ct255-images/player_ship.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,15 +34,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\eidhn\IdeaProjects\spaders\src" />

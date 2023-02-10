@@ -2,14 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.*;
 
 public class InvadersApplication extends JFrame implements Runnable, KeyListener {
     private static final Dimension windowSize = new Dimension(750, 750);
+    private BufferStrategy strategy;
     private static final int NOALIENS = 50;
     private final Sprite2D[] aliens = new Sprite2D[NOALIENS];
     private final Sprite2D player;
-    private static String workingDirectory;
-
 
 
     // constructor
@@ -28,11 +28,15 @@ public class InvadersApplication extends JFrame implements Runnable, KeyListener
         setBounds(x, y, windowSize.width, windowSize.height);
         setVisible(true);
 
-        // load images and initialise sprites
-        workingDirectory = System.getProperty("user.dir");
+        // init buffer
+        createBufferStrategy(2);
+        strategy = getBufferStrategy();
 
-        ImageIcon alienIcon = new ImageIcon(workingDirectory + "\\src\\alien_ship_1.png");
-        ImageIcon shipIcon = new ImageIcon(workingDirectory + "\\src\\player_ship.png");
+        // load images and initialise sprites
+        String workingDirectory = System.getProperty("user.dir");
+
+        ImageIcon alienIcon = new ImageIcon(workingDirectory + "\\src\\images\\ct255-images\\alien_ship_1.png");
+        ImageIcon shipIcon = new ImageIcon(workingDirectory + "\\src\\images\\ct255-images\\player_ship.png");
         player = new Sprite2D(325, 700,  shipIcon.getImage());
 
         for (int i = 0; i < NOALIENS; i++) {
@@ -75,6 +79,9 @@ public class InvadersApplication extends JFrame implements Runnable, KeyListener
 
     // paint method
     public void paint (Graphics g) {
+        // redirect drawing calls to offscreen buffer
+        g = strategy.getDrawGraphics();
+
         // draw a black rectangle on the whole canvas
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, windowSize.width, windowSize.height);
@@ -85,6 +92,9 @@ public class InvadersApplication extends JFrame implements Runnable, KeyListener
         }
 
         player.paint(g);
+
+        // flip buffers
+        strategy.show();
     }
 
     // key-based event handlers
