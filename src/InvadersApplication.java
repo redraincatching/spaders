@@ -3,13 +3,15 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class InvadersApplication extends JFrame implements Runnable, KeyListener {
     private static final Dimension windowSize = new Dimension(750, 750);
     private BufferStrategy strategy;
-    private static final int NOALIENS = 50;
-    private final Sprite2D[] aliens = new Sprite2D[NOALIENS];
-    private final Sprite2D player;
+    private static final int NOALIENS = 50; // CAN'T BE A PRIME NUMBER
+    private final Alien[] aliens = new Alien[NOALIENS];
+    private final Player player;
 
 
     // constructor
@@ -37,10 +39,19 @@ public class InvadersApplication extends JFrame implements Runnable, KeyListener
 
         ImageIcon alienIcon = new ImageIcon(workingDirectory + "\\src\\images\\ct255-images\\alien_ship_1.png");
         ImageIcon shipIcon = new ImageIcon(workingDirectory + "\\src\\images\\ct255-images\\player_ship.png");
-        player = new Sprite2D(325, 700,  shipIcon.getImage());
+        player = new Player(shipIcon.getImage());
 
+        // find factors of NOALIENS as close to midpoint as possible, then arrange them into grid
+        int cols = getFactors(NOALIENS);
+        // more columns than rows, ideally
+
+        // x position is BASE + STEP*(column_no)
+        // y position is BASE + STEP*(row_no)
         for (int i = 0; i < NOALIENS; i++) {
-            aliens[i] = new Sprite2D(alienIcon.getImage());
+            aliens[i] = new Alien(
+                    100 + 65*(i%cols),
+                    100 + 50*(Math.floor((float) i/cols)),
+                    alienIcon.getImage());
         }
 
         // start animation thread
@@ -57,23 +68,38 @@ public class InvadersApplication extends JFrame implements Runnable, KeyListener
     // thread's entry point
     @Override
     public void run() {
+        boolean collision = false;
         do {
             // constantly attempt to move the player, whether the change to x will be 0 or not
-            player.movePlayer();
+            player.move();
 
-            // move each alien randomly
-            for (Sprite2D s : aliens) {
-                s.moveEnemy();
+            // move each alien
+            for (Alien a : aliens) {
+                if (a.checkCollision()) {
+                    collision = true;
+                    break;
+                }
             }
+            for (Alien a : aliens) {
+                if (collision) {
+                    a.setxSpeed(-a.getxSpeed());
+                    a.setySpeed(10);
+                }
+                a.move();
+            }
+
+            // repaint
             this.repaint();
 
             // sleep for 20 ms
             try {
+                // busy waiting but i don't really care
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
+            collision = false;
         } while (true);
     }
 
@@ -97,6 +123,7 @@ public class InvadersApplication extends JFrame implements Runnable, KeyListener
         strategy.show();
     }
 
+
     // key-based event handlers
     @Override
     public void keyTyped(KeyEvent e) {
@@ -119,4 +146,25 @@ public class InvadersApplication extends JFrame implements Runnable, KeyListener
         player.setxSpeed(0);
     }
 
+
+    // other helper functions
+    static int getFactors (int n)
+    {
+        // this is a little wonky but anyway
+        ArrayList<Integer> factors = new ArrayList<>();
+
+        // just make sure there's space
+        for(int i = 1; i <= Math.sqrt(n); ++i)
+        {
+            if (n % i == 0){
+                factors.add(i);
+                factors.add(n/i);
+            }
+        }
+
+        // return highest of the two middle factors
+        return Math.max(factors.get(factors.size()-1), factors.get(factors.size()-2));
+    }
 }
+
+

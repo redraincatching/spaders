@@ -1,12 +1,14 @@
 import java.awt.*;
 import java.util.Random;
 
-public class Sprite2D {
-    private double x,y;
-    private double xSpeed = 0;
-    private static final double DEFAULT_X = 150, DEFAULT_Y = 150;
-    private final Random rand = new Random();
-    private final Image spriteImage;
+public abstract class Sprite2D {
+    protected double x,y;
+    protected double xSpeed = 0;
+    protected double ySpeed = 0;
+    protected int width, height;
+    protected static final double DEFAULT_X = 325, DEFAULT_Y = 700;   // player start position
+    protected final Random rand = new Random();
+    protected final Image spriteImage;
 
     public Sprite2D(Image img) {
         this(DEFAULT_X, DEFAULT_Y, img);
@@ -16,28 +18,36 @@ public class Sprite2D {
         spriteImage = img;
         x = startingX;
         y = startingY;
+        getImageDimensions();
     }
 
     // public methods
-    public void moveEnemy() {
-        // real basic but i don't care
-        x = (rand.nextInt(0, 750));
-        y = (rand.nextInt(0, 650));
-    }
-
-    public void movePlayer() {
-        x += xSpeed;
-    }
-
     public void setPosition(double x, double y) {
         // not useful yet, will be later
         this.x = x;
         this.y = y;
     }
 
+    public void getImageDimensions() {
+        width = spriteImage.getWidth(null);
+        height = spriteImage.getHeight(null);
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     public void setxSpeed(double deltaX) {
         xSpeed = deltaX;
     }
+
+    public double getxSpeed() { return xSpeed; }
+
+    public void setySpeed(double deltaY) {ySpeed = deltaY; }
 
     public void paint(Graphics g) {
         g.drawImage(spriteImage, (int) x, (int) y, null);
