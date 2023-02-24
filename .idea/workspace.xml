@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0cf745a8-bae1-4a13-aa42-d40463f128e2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Alien.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Bullet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Alien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Alien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bullet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/InvadersApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InvadersApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Sprite2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sprite2D.java" afterDir="false" />
     </list>
